@@ -167,6 +167,46 @@
         .products-list.loading { opacity: 0.4; pointer-events: none; transition: opacity 0.3s; }
         
         /* =========================================
+           ESTILOS DO BOTÃO E MENU DE FILTROS MOBILE
+           ========================================= */
+        .mobile-filter-btn {
+            display: none;
+            width: 100%;
+            background: #1e1e1e;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .mobile-filter-btn i { margin-right: 8px; }
+        
+        .sidebar-mobile-header {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .sidebar-mobile-header h3 { margin: 0; font-size: 18px; font-weight: 800; color: #111; }
+        .close-filter-btn { background: transparent; border: none; font-size: 24px; color: #333; cursor: pointer; }
+        
+        .filter-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .filter-overlay.show { display: block; opacity: 1; }
+
+        /* =========================================
            ESTILOS DOS CARDS DE PRODUTOS (NOVO DESIGN)
            ========================================= */
         .product-card {
@@ -321,9 +361,28 @@
             .submenu .flex { flex-direction: column !important; gap: 15px !important; }
             .btn-ofertas { text-align: center; justify-content: center; border-radius: 0; }
 
-            /* Layout: Filtros ocupam a largura toda e ficam acima dos produtos */
-            .catalog-layout { flex-direction: column; gap: 20px; }
-            .sidebar-category-wrapper { flex: none; width: 100%; }
+            /* Layout: Filtros viram Drawer Lateral no Mobile */
+            .catalog-layout { flex-direction: column; gap: 0; }
+            
+            .mobile-filter-btn { display: block; }
+            .sidebar-mobile-header { display: flex; }
+            
+            .sidebar-category-wrapper { 
+                position: fixed;
+                top: 0;
+                left: -100%; /* Esconde fora da tela por padrão */
+                width: 85%;
+                max-width: 320px;
+                height: 100vh;
+                background: #fff;
+                z-index: 1002;
+                padding: 20px;
+                overflow-y: auto;
+                transition: left 0.3s ease;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .sidebar-category-wrapper.open { left: 0; box-shadow: 2px 0 15px rgba(0,0,0,0.5); }
         }
 
         @media (max-width: 480px) {
@@ -541,8 +600,23 @@
         <!-- ALTERAÇÃO AQUI: Aplicação da classe estrutural 'catalog-layout' -->
         <section class="pv-6 catalog-layout">
             
-            <!-- ALTERAÇÃO AQUI: Remoção do style inline flex para permitir o CSS dinâmico -->
+            <!-- OVERLAY DOS FILTROS MOBILE -->
+            <div class="filter-overlay"></div>
+
+            <!-- BOTÃO FILTRAR MOBILE (Fica visível apenas em telas menores) -->
+            <button class="mobile-filter-btn">
+                <i class="fa-solid fa-filter"></i> Filtrar Produtos
+            </button>
+
+            <!-- COLUNA DA ESQUERDA: FILTROS SANFONA -->
             <div id="sidebar-category" class="sidebar-category sidebar-category-wrapper">
+                
+                <!-- CABEÇALHO DO FILTRO MOBILE -->
+                <div class="sidebar-mobile-header">
+                    <h3>Filtros</h3>
+                    <button class="close-filter-btn" aria-label="Fechar Filtros"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
                 <form class="smart-filter" name="form-filter" method="get" action="">
                     
                     <!-- FILTRO: MARCAS -->
@@ -729,6 +803,30 @@
                     icon.classList.add('fa-bars');
                 }
             });
+        }
+
+        // 6. Interação do Filtro Mobile (Off-canvas)
+        const filterBtn = document.querySelector('.mobile-filter-btn');
+        const closeFilterBtn = document.querySelector('.close-filter-btn');
+        const sidebarCategory = document.querySelector('.sidebar-category-wrapper');
+        const filterOverlay = document.querySelector('.filter-overlay');
+
+        if (filterBtn && sidebarCategory) {
+            function toggleMobileFilters() {
+                sidebarCategory.classList.toggle('open');
+                
+                if (sidebarCategory.classList.contains('open')) {
+                    filterOverlay.classList.add('show');
+                    document.body.style.overflow = 'hidden'; // Impede o scroll da página de fundo
+                } else {
+                    filterOverlay.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            filterBtn.addEventListener('click', toggleMobileFilters);
+            closeFilterBtn.addEventListener('click', toggleMobileFilters);
+            filterOverlay.addEventListener('click', toggleMobileFilters); // Fecha ao clicar fora
         }
     });
 </script>
