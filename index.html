@@ -99,7 +99,8 @@
         .btn-ofertas { background: var(--color_primary); color: #ffffff !important; padding: 8px 16px; border-radius: 4px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 153, 51, 0.3); }
         .btn-ofertas:hover { background: #007a29; transform: scale(1.05); box-shadow: 0 6px 15px rgba(0, 153, 51, 0.4); }
 
-        .hamburger-btn { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; padding: 5px; }
+        .mobile-menu-toggle { display: none; background: var(--color_dark); color: #fff; padding: 15px; text-align: center; font-weight: 700; cursor: pointer; border-bottom: 1px solid #333; }
+        .mobile-menu-toggle i { margin-right: 8px; }
 
         /* =========================================
            RESET DE BANNER E LAYOUT
@@ -209,10 +210,7 @@
 
         @media (max-width: 768px) {
             header { position: relative; }
-            .main-header-content .container { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 0; }
-            .hamburger-btn { display: block; order: 1; }
-            .logo-header { order: 2; margin: 0 auto; }
-            .header-search-input { max-width: 100% !important; flex: 0 0 100%; order: 3; margin-top: 15px; }
+            .mobile-menu-toggle { display: block; }
 
             .header-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
             .header-nav.mobile-menu-open { display: block; } 
@@ -274,22 +272,11 @@
 
 <div class="application">
 
-    <!-- CABEÇALHO SUPERIOR (Logo + Busca) -->
-    <header>
-        <div class="main-header-content">
-            <div class="container pv-2 flex ai-c jc-sb" style="max-width: 1200px; margin: 0 auto;">
-                
-                <button class="hamburger-btn" aria-label="Abrir Menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-
-                <a class="logo-header" href="/">
-                    <img src="https://images.tcdn.com.br/files/1063462/themes/168/img/settings/logo-pneugreen-1.png" alt="PNEUGREEN" style="max-height: 50px;">
-                </a>
-                <div class="header-search-input flex-1" style="max-width: 500px; display: flex;">
-                    <input style="width: 100%; padding: 12px 15px; border: none; border-radius: 4px;" placeholder="O que você procura? Ex.: Pneu 205 55 16" type="text" />
-                </div>
-            </div>
+    <!-- CABEÇALHO -->
+    <header style="position: relative;">
+        <!-- Toggle apenas para mobile -->
+        <div class="mobile-menu-toggle">
+            <i class="fa-solid fa-bars"></i> Menu de Categorias
         </div>
 
         <nav class="header-nav">
@@ -596,13 +583,13 @@
             });
         }
 
-        // 5. Interação do Menu Hambúrguer
-        const hamburgerBtn = document.querySelector('.hamburger-btn');
+        // 5. Interação do Menu Mobile
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
         const headerNav = document.querySelector('.header-nav');
-        if (hamburgerBtn && headerNav) {
-            hamburgerBtn.addEventListener('click', function() {
+        if (mobileToggle && headerNav) {
+            mobileToggle.addEventListener('click', function() {
                 headerNav.classList.toggle('mobile-menu-open');
-                const icon = hamburgerBtn.querySelector('i');
+                const icon = mobileToggle.querySelector('i');
                 if (headerNav.classList.contains('mobile-menu-open')) {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-xmark');
