@@ -112,7 +112,7 @@
            ESTILOS DOS FILTROS (SANFONAS)
            ========================================= */
         .sidebar-category { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .filter-block { border-bottom: 1px solid #eee; margin-bottom: 15px; padding-bottom: 10px; }
+        .filter-block { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 5px; } /* Espaço inferior do bloco reduzido */
         .filter-title { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 16px; font-weight: 700; user-select: none; transition: color 0.3s; margin: 0; color: #333;}
         .filter-title:hover { color: var(--color_primary); }
         .filter-title i { transition: transform 0.3s; font-size: 12px; color: #999; }
@@ -120,18 +120,18 @@
         .filter-block.closed .filter-content { display: none; }
         .filter-block.closed .filter-title i { transform: rotate(-90deg); }
         
-        .filter-list { margin-top: 10px; }
-        .filter-item { margin-bottom: 10px; }
-        .filter-checkbox { display: flex; align-items: center; gap: 10px; }
-        .filter-checkbox input[type="checkbox"] { accent-color: var(--color_primary); width: 16px; height: 16px; cursor: pointer; }
-        .filter-checkbox label { font-size: 14px; cursor: pointer; margin: 0; color: #555;}
+        .filter-list { margin-top: 5px; } /* Margem superior reduzida */
+        .filter-item { margin-bottom: 6px; } /* Distância entre as opções consideravelmente reduzida */
+        .filter-checkbox { display: flex; align-items: center; gap: 8px; } /* Distância entre a caixa e o texto reduzida */
+        .filter-checkbox input[type="checkbox"] { accent-color: var(--color_primary); width: 15px; height: 15px; cursor: pointer; } /* Caixa levemente menor */
+        .filter-checkbox label { font-size: 14px; cursor: pointer; margin: 0; color: #555; line-height: 1.2; } /* Altura da linha otimizada */
         
-        .filter-search-wrapper { padding: 5px 0 15px 0; }
-        .filter-search-input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; outline: none; }
+        .filter-search-wrapper { padding: 5px 0 10px 0; } /* Espaço debaixo da barra de pesquisa reduzido */
+        .filter-search-input { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; outline: none; } /* Barra de pesquisa mais compacta */
         .filter-search-input:focus { border-color: var(--color_primary); }
         
         .filter-list li.hidden-item { display: none; }
-        .btn-ver-mais { display: inline-block; color: var(--color_primary); font-size: 13px; font-weight: 700; margin-top: 12px; cursor: pointer; }
+        .btn-ver-mais { display: inline-block; color: var(--color_primary); font-size: 13px; font-weight: 700; margin-top: 6px; cursor: pointer; } /* Mais próximo da última opção */
         .btn-ver-mais:hover { text-decoration: underline; }
         
         .filter-button-container { display: none !important; }
