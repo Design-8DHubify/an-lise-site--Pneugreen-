@@ -638,6 +638,26 @@
             if (closeFilterBtn) closeFilterBtn.addEventListener('click', toggleMobileFilters);
             if (filterOverlay) filterOverlay.addEventListener('click', toggleMobileFilters); 
         }
+
+        // 7. Interação dos Submenus (Accordions) no Mobile
+        const menuItemsWithSubmenu = document.querySelectorAll('.has-submenu > a');
+        menuItemsWithSubmenu.forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Executa apenas se for tela de telemóvel/tablet
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // Impede a navegação e força a funcionar como sanfona
+                    const parentLi = this.parentElement;
+                    
+                    // Fecha todos os outros submenus abertos (Sanfona fluída)
+                    document.querySelectorAll('.has-submenu').forEach(li => {
+                        if (li !== parentLi) li.classList.remove('open');
+                    });
+
+                    // Alterna o estado de aberto/fechado do item clicado
+                    parentLi.classList.toggle('open');
+                }
+            });
+        });
     });
 </script>
 
