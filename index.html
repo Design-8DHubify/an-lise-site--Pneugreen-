@@ -227,8 +227,16 @@
             
             .custom-nav-link { padding: 15px 20px; justify-content: space-between; }
             
-            .submenu { position: static !important; transform: none !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; min-width: 100% !important; display: none !important; padding-left: 10px; }
-            .has-submenu:hover .submenu, .has-submenu:active .submenu { display: flex !important; }
+            /* RESET DA SANFONA E ANULAÇÃO DO HOVER NO MOBILE */
+            .submenu { position: static !important; transform: none !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; min-width: 100% !important; display: none !important; padding-left: 10px; opacity: 1 !important; visibility: visible !important; }
+            
+            /* DESATIVA O HOVER NO MOBILE E DEIXA SÓ O JAVASCRIPT CONTROLAR */
+            .has-submenu:hover .submenu, .has-submenu:active .submenu { display: none !important; }
+            .has-submenu.open .submenu { display: flex !important; }
+            
+            /* ANIMAÇÃO DA SETINHA AO ABRIR/FECHAR */
+            .has-submenu > a i.fa-chevron-down { transition: transform 0.3s ease; }
+            .has-submenu.open > a i.fa-chevron-down { transform: rotate(-180deg); }
             
             /* CORREÇÃO: Aplica a coluna vertical apenas à caixa estrutural (ex: bloco de Marcas) e ignora os links com ícones */
             .submenu > div.flex { flex-direction: column !important; gap: 15px !important; }
@@ -295,7 +303,7 @@
                 <ul class="flex gap-2 ai-c font-size-8 jc-sb">
 
                     <li class="has-submenu">
-                        <a href="#" title="Pneus por Veículo" class="flex ai-c gap-2 pv-2 custom-nav-link">
+                        <a href="javascript:void(0);" title="Pneus por Veículo" class="flex ai-c gap-2 pv-2 custom-nav-link">
                             <span>Pneus por Veículo</span>
                             <i class="fa-solid fa-chevron-down text-primary"></i>
                         </a>
@@ -320,7 +328,7 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="#" title="Pneus por Aro" class="flex ai-c gap-2 pv-2 custom-nav-link">
+                        <a href="javascript:void(0);" title="Pneus por Aro" class="flex ai-c gap-2 pv-2 custom-nav-link">
                             <span>Pneus por Aro</span>
                             <i class="fa-solid fa-chevron-down text-primary"></i>
                         </a>
@@ -334,7 +342,7 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="/marcas" title="Marcas" class="flex ai-c gap-2 pv-2 custom-nav-link">
+                        <a href="javascript:void(0);" title="Marcas" class="flex ai-c gap-2 pv-2 custom-nav-link">
                             <span>Marcas</span>
                             <i class="fa-solid fa-chevron-down text-primary"></i>
                         </a>
@@ -366,7 +374,7 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="/kit-de-pneus" title="Kits de Pneus" class="flex ai-c gap-2 pv-2 custom-nav-link">
+                        <a href="javascript:void(0);" title="Kits de Pneus" class="flex ai-c gap-2 pv-2 custom-nav-link">
                             <span>Kits de Pneus</span>
                             <i class="fa-solid fa-chevron-down text-primary"></i>
                         </a>
