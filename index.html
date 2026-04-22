@@ -556,13 +556,13 @@
 
 </div>
 
-<!-- SCRIPT DE INTERAÇÃO DOS FILTROS E MOBILE -->
+<!-- SCRIPT DE INTERAÇÃO DOS FILTROS E MOBILE (REESCRITO COM EVENT DELEGATION) -->
 <script>
-    // 1. Sanfonas
-    function toggleFilter(element) { element.classList.toggle('closed'); }
+    // 1. Sanfonas Internas (Filtros) - Global para onclick
+    window.toggleFilter = function(element) { element.classList.toggle('closed'); }
 
-    // 2. Busca
-    function searchFilter(input) {
+    // 2. Busca - Global para onkeyup
+    window.searchFilter = function(input) {
         const filter = input.value.toLowerCase();
         const list = input.closest('.filter-content').querySelector('.filter-list');
         const items = list.getElementsByClassName('filter-item');
@@ -579,31 +579,22 @@
         if(verMais) verMais.style.display = filter.length > 0 ? "none" : "inline-block";
     }
 
-    // 3. Mostrar mais
-    function showMoreItems(btn) {
+    // 3. Mostrar mais - Global para onclick
+    window.showMoreItems = function(btn) {
         const list = btn.closest('.filter-content').querySelector('.filter-list');
         const hiddenItems = list.querySelectorAll('.hidden-item');
         hiddenItems.forEach(item => item.classList.remove('hidden-item'));
         btn.style.display = "none";
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    // LÓGICA DE DELEGAÇÃO DE EVENTOS GLOBAL (À PROVA DE FALHAS NO MOBILE)
+    document.addEventListener('click', function(e) {
         
-        // 4. Auto-Refresh Simulador
-        const filterForm = document.querySelector('.smart-filter');
-        const productsContainer = document.querySelector('.products-list');
-        if (filterForm) {
-            filterForm.addEventListener('change', function() {
-                if(productsContainer) productsContainer.classList.add('loading');
-                setTimeout(() => { productsContainer.classList.remove('loading'); }, 800);
-            });
-        }
-
-        // 5. Interação do Menu Mobile
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const headerNav = document.querySelector('.header-nav');
-        if (mobileToggle && headerNav) {
-            mobileToggle.addEventListener('click', function() {
+        // A. Toggle do Menu Principal (Hambúrguer)
+        const mobileToggle = e.target.closest('.mobile-menu-toggle');
+        if (mobileToggle) {
+            const headerNav = document.querySelector('.header-nav');
+            if (headerNav) {
                 headerNav.classList.toggle('mobile-menu-open');
                 const icon = mobileToggle.querySelector('i');
                 if (headerNav.classList.contains('mobile-menu-open')) {
@@ -613,52 +604,59 @@
                     icon.classList.remove('fa-xmark');
                     icon.classList.add('fa-bars');
                 }
-            });
+            }
+            return;
         }
 
-        // 6. Interação do Filtro Mobile (Off-canvas Drawer Lateral)
-        const filterBtn = document.querySelector('.mobile-filter-btn');
-        const closeFilterBtn = document.querySelector('.close-filter-btn');
-        const sidebarCategory = document.querySelector('.sidebar-category-wrapper');
-        const filterOverlay = document.querySelector('.filter-overlay');
+        // B. Accordions do Menu (Apenas em Mobile <= 768px)
+        const submenuLink = e.target.closest('.has-submenu > a');
+        if (submenuLink && window.innerWidth <= 768) {
+            e.preventDefault(); 
+            const parentLi = submenuLink.parentElement;
+            
+            // Fecha as outras sanfonas abertas
+            document.querySelectorAll('.has-submenu').forEach(li => {
+                if (li !== parentLi) li.classList.remove('open');
+            });
 
-        if (filterBtn && sidebarCategory) {
-            function toggleMobileFilters(e) {
-                if (e) e.preventDefault();
+            // Abre/fecha a clicada
+            parentLi.classList.toggle('open');
+            return;
+        }
+
+        // C. Gaveta Lateral de Filtros (Off-canvas)
+        const filterBtn = e.target.closest('.mobile-filter-btn');
+        const closeFilterBtn = e.target.closest('.close-filter-btn');
+        const overlayClick = e.target.closest('.filter-overlay');
+
+        if (filterBtn || closeFilterBtn || overlayClick) {
+            e.preventDefault();
+            const sidebarCategory = document.querySelector('.sidebar-category-wrapper');
+            const filterOverlay = document.querySelector('.filter-overlay');
+            
+            if (sidebarCategory && filterOverlay) {
                 sidebarCategory.classList.toggle('open');
-                
                 if (sidebarCategory.classList.contains('open')) {
                     filterOverlay.classList.add('show');
-                    document.body.style.overflow = 'hidden'; 
+                    document.body.style.overflow = 'hidden'; // Bloqueia o fundo
                 } else {
                     filterOverlay.classList.remove('show');
-                    document.body.style.overflow = '';
+                    document.body.style.overflow = ''; // Libera o fundo
                 }
             }
-            filterBtn.addEventListener('click', toggleMobileFilters);
-            if (closeFilterBtn) closeFilterBtn.addEventListener('click', toggleMobileFilters);
-            if (filterOverlay) filterOverlay.addEventListener('click', toggleMobileFilters); 
+            return;
         }
+    });
 
-        // 7. Interação dos Submenus (Accordions) no Mobile
-        const menuItemsWithSubmenu = document.querySelectorAll('.has-submenu > a');
-        menuItemsWithSubmenu.forEach(item => {
-            item.addEventListener('click', function(e) {
-                // Executa apenas se for tela de telemóvel/tablet
-                if (window.innerWidth <= 768) {
-                    e.preventDefault(); // Impede a navegação e força a funcionar como sanfona
-                    const parentLi = this.parentElement;
-                    
-                    // Fecha todos os outros submenus abertos (Sanfona fluída)
-                    document.querySelectorAll('.has-submenu').forEach(li => {
-                        if (li !== parentLi) li.classList.remove('open');
-                    });
-
-                    // Alterna o estado de aberto/fechado do item clicado
-                    parentLi.classList.toggle('open');
-                }
-            });
-        });
+    // Simulador de carregamento de Filtro (Auto-Refresh)
+    document.addEventListener('change', function(e) {
+        if (e.target.closest('.smart-filter')) {
+            const productsContainer = document.querySelector('.products-list');
+            if (productsContainer) {
+                productsContainer.classList.add('loading');
+                setTimeout(() => { productsContainer.classList.remove('loading'); }, 800);
+            }
+        }
     });
 </script>
 
