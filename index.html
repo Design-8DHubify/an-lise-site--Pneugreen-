@@ -67,9 +67,9 @@
            ========================================= */
         .main-header-content { background-color: var(--color_dark); padding: 15px 0; }
         
-        nav.header-nav { background-color: var(--color_dark); border-top: 1px solid #333; padding: 10px 0; }
+        nav.header-nav { background-color: var(--color_dark); border-top: 1px solid #333; padding: 0; }
 
-        .header-nav > ul > li { position: relative; padding: 0 10px; }
+        .header-nav > ul > li { position: relative; padding: 0 5px; }
         
         .custom-nav-link, .custom-nav-link span, .custom-nav-link i { 
             transition: color 0.3s ease; font-size: 15px; font-weight: 600; color: #ffffff !important; 
@@ -90,13 +90,13 @@
         .header-nav > ul > li:nth-last-child(2) .submenu, 
         .header-nav > ul > li:nth-last-child(3) .submenu { left: auto; right: 0; }
 
-        .custom-submenu-link { padding: 12px 16px; border-radius: 4px; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; color: #333 !important; font-size: 15px; }
-        .custom-submenu-link:hover { background-color: var(--color_gray); color: var(--color_primary) !important; padding-left: 21px; padding-right: 7px; }
+        .custom-submenu-link { padding: 10px 14px; border-radius: 4px; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; color: #333 !important; font-size: 14px; }
+        .custom-submenu-link:hover { background-color: var(--color_gray); color: var(--color_primary) !important; padding-left: 18px; padding-right: 10px; }
         
         .btn-ver-marcas { background-color: transparent; border: 2px solid var(--color_primary); color: var(--color_primary) !important; font-weight: 700; text-align: center; border-radius: 4px; padding: 8px 24px; display: inline-block; transition: all 0.3s ease; }
         .btn-ver-marcas:hover { background-color: var(--color_primary); color: #ffffff !important; }
         
-        .btn-ofertas { background: var(--color_primary); color: #ffffff !important; padding: 10px 18px; border-radius: 4px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 153, 51, 0.3); }
+        .btn-ofertas { background: var(--color_primary); color: #ffffff !important; padding: 8px 16px; border-radius: 4px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 153, 51, 0.3); }
         .btn-ofertas:hover { background: #007a29; transform: scale(1.05); box-shadow: 0 6px 15px rgba(0, 153, 51, 0.4); }
 
         .hamburger-btn { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; padding: 5px; }
@@ -109,29 +109,43 @@
         .sidebar-category-wrapper { flex: 0 0 280px; }
 
         /* =========================================
-           ESTILOS DOS FILTROS (SANFONAS)
+           ESTILOS DOS FILTROS (SANFONAS) - FORÇANDO REDUÇÃO DE ESPAÇOS
            ========================================= */
-        .sidebar-category { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .filter-block { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 5px; } /* Espaço inferior do bloco reduzido */
-        .filter-title { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 16px; font-weight: 700; user-select: none; transition: color 0.3s; margin: 0; color: #333;}
+        .sidebar-category { 
+            background: #fff; 
+            border-radius: 8px; 
+            padding: 10px 15px !important; /* Força o menu a ficar com bordas curtas */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        }
+        .filter-block { 
+            border-bottom: 1px solid #eee; 
+            margin-bottom: 10px !important; 
+            padding-bottom: 5px !important; /* Força espaço menor da linha para cima */
+        }
+        .filter-title { 
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center; 
+            padding: 2px 0 5px 0 !important; /* Espaço colado entre título e busca */
+            font-size: 16px; font-weight: 700; user-select: none; transition: color 0.3s; 
+            margin: 0 !important; color: #333;
+        }
         .filter-title:hover { color: var(--color_primary); }
         .filter-title i { transition: transform 0.3s; font-size: 12px; color: #999; }
         
         .filter-block.closed .filter-content { display: none; }
         .filter-block.closed .filter-title i { transform: rotate(-90deg); }
         
-        .filter-list { margin-top: 5px; } /* Margem superior reduzida */
-        .filter-item { margin-bottom: 6px; } /* Distância entre as opções consideravelmente reduzida */
-        .filter-checkbox { display: flex; align-items: center; gap: 8px; } /* Distância entre a caixa e o texto reduzida */
-        .filter-checkbox input[type="checkbox"] { accent-color: var(--color_primary); width: 15px; height: 15px; cursor: pointer; } /* Caixa levemente menor */
-        .filter-checkbox label { font-size: 14px; cursor: pointer; margin: 0; color: #555; line-height: 1.2; } /* Altura da linha otimizada */
+        .filter-list { margin-top: 5px !important; margin-bottom: 0 !important; padding: 0 !important; } 
+        .filter-item { margin-bottom: 5px !important; } 
+        .filter-checkbox { display: flex; align-items: center; gap: 8px; } 
+        .filter-checkbox input[type="checkbox"] { accent-color: var(--color_primary); width: 14px; height: 14px; cursor: pointer; margin: 0 !important; } 
+        .filter-checkbox label { font-size: 14px; cursor: pointer; margin: 0 !important; color: #555; line-height: 1.1 !important; } 
         
-        .filter-search-wrapper { padding: 5px 0 10px 0; } /* Espaço debaixo da barra de pesquisa reduzido */
-        .filter-search-input { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; outline: none; } /* Barra de pesquisa mais compacta */
+        .filter-search-wrapper { padding: 0 0 5px 0 !important; margin: 0 !important; } 
+        .filter-search-input { width: 100%; padding: 6px 10px !important; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; outline: none; margin: 0 !important; } 
         .filter-search-input:focus { border-color: var(--color_primary); }
         
         .filter-list li.hidden-item { display: none; }
-        .btn-ver-mais { display: inline-block; color: var(--color_primary); font-size: 13px; font-weight: 700; margin-top: 6px; cursor: pointer; } /* Mais próximo da última opção */
+        .btn-ver-mais { display: inline-block; color: var(--color_primary); font-size: 13px; font-weight: 700; margin-top: 2px !important; margin-bottom: 5px !important; cursor: pointer; } 
         .btn-ver-mais:hover { text-decoration: underline; }
         
         .filter-button-container { display: none !important; }
@@ -143,7 +157,7 @@
         }
         .mobile-filter-btn i { margin-right: 8px; font-size: 18px; }
         
-        .sidebar-mobile-header { display: none; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        .sidebar-mobile-header { display: none; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
         .sidebar-mobile-header h3 { margin: 0; font-size: 18px; font-weight: 800; color: #111; }
         .close-filter-btn { background: transparent; border: none; font-size: 24px; color: #333; cursor: pointer; }
         
@@ -154,14 +168,14 @@
            ESTILOS DOS CARDS DE PRODUTOS (NOVO GRID)
            ========================================= */
         .list-product {
-            display: grid !important; /* Força o GRID em vez de flex */
+            display: grid !important; 
             grid-template-columns: repeat(3, 1fr) !important;
             gap: 20px !important;
             margin: 0; padding: 0;
         }
 
         .product-card {
-            width: 100% !important; /* Ocupa exatamente 1 espaço no grid */
+            width: 100% !important;
             border: 1px solid #eaeaea; border-radius: 16px; padding: 20px;
             display: flex; flex-direction: column; position: relative;
             background: #fff; transition: box-shadow 0.3s, transform 0.3s;
@@ -227,7 +241,7 @@
                 height: 100vh !important;
                 background: #fff !important;
                 z-index: 10000 !important; 
-                padding: 20px !important;
+                padding: 15px !important; /* Adaptado para mobile também */
                 overflow-y: auto !important;
                 transition: transform 0.3s ease !important;
                 border-radius: 0 !important;
@@ -241,7 +255,6 @@
         }
 
         @media (max-width: 480px) {
-            /* Força sempre 2 colunas seguras usando Grid */
             .list-product { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
             
             .product-card { padding: 12px !important; border-radius: 12px !important; }
