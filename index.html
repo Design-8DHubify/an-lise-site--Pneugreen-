@@ -216,11 +216,14 @@
             header { position: relative; }
             .mobile-menu-toggle { display: block; }
 
-            .header-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+            /* Adicionado padding-bottom: 20px; para dar espaço abaixo do botão de ofertas */
+            .header-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); padding-bottom: 20px; }
             .header-nav.mobile-menu-open { display: block; } 
 
             .header-nav > div > ul { flex-direction: column; align-items: stretch; gap: 0; }
             .header-nav > div > ul > li { border-bottom: 1px solid #333; padding: 0; }
+            .header-nav > div > ul > li:last-child { border-bottom: none; } /* Remove a linha do último item */
+            
             .custom-nav-link { padding: 15px 20px; justify-content: space-between; }
             
             .submenu { position: static !important; transform: none !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; min-width: 100% !important; display: none !important; padding-left: 10px; }
