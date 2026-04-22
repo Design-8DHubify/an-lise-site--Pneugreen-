@@ -228,7 +228,10 @@
             
             .submenu { position: static !important; transform: none !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; min-width: 100% !important; display: none !important; padding-left: 10px; }
             .has-submenu:hover .submenu, .has-submenu:active .submenu { display: flex !important; }
-            .submenu .flex { flex-direction: column !important; gap: 15px !important; }
+            
+            /* CORREÇÃO: Aplica a coluna vertical apenas à caixa estrutural (ex: bloco de Marcas) e ignora os links com ícones */
+            .submenu > div.flex { flex-direction: column !important; gap: 15px !important; }
+            
             .btn-ofertas { text-align: center; justify-content: center; border-radius: 0; }
 
             .catalog-layout { flex-direction: column; gap: 0; }
