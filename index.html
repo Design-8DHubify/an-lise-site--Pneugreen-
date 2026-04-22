@@ -25,27 +25,21 @@
             --text_color: #333;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body { 
-            background-color: #f4f4f4; /* Fundo claro para o corpo da página */
+            background-color: #f4f4f4;
             color: var(--text_color);
-            font-family: 'Nunito', sans-serif !important; /* Fonte aplicada apenas ao texto do corpo */
-            overflow-x: hidden; /* CORREÇÃO: Evita que a página crie barra de rolagem lateral */
+            font-family: 'Nunito', sans-serif !important;
+            overflow-x: hidden; 
         }
 
-        /* Correção: Força a exibição correta das setinhas e ícones (FontAwesome) */
         .fa-solid, .fas, .fa { font-family: "Font Awesome 6 Free" !important; font-weight: 900 !important; }
         .fa-brands, .fab { font-family: "Font Awesome 6 Brands" !important; font-weight: 400 !important; }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        /* Utilitários Flexbox */
         .flex { display: flex; }
         .ai-c { align-items: center; }
         .jc-sb { justify-content: space-between; }
@@ -71,27 +65,14 @@
         /* =========================================
            ESTILOS DO MENU E CABEÇALHO
            ========================================= */
-        .main-header-content {
-            background-color: var(--color_dark);
-            padding: 15px 0;
-        }
+        .main-header-content { background-color: var(--color_dark); padding: 15px 0; }
         
-        nav.header-nav {
-            background-color: var(--color_dark); 
-            border-top: 1px solid #333;
-            padding: 10px 0; /* AUMENTADO: Espaçamento vertical da barra principal do menu */
-        }
+        nav.header-nav { background-color: var(--color_dark); border-top: 1px solid #333; padding: 10px 0; }
 
-        .header-nav > ul > li { 
-            position: relative; 
-            padding: 0 10px; /* AUMENTADO: Distância horizontal entre os botões principais */
-        }
+        .header-nav > ul > li { position: relative; padding: 0 10px; }
         
         .custom-nav-link, .custom-nav-link span, .custom-nav-link i { 
-            transition: color 0.3s ease; 
-            font-size: 15px; /* Ligeiramente maior para equilibrar com o novo espaço */
-            font-weight: 600; 
-            color: #ffffff !important; 
+            transition: color 0.3s ease; font-size: 15px; font-weight: 600; color: #ffffff !important; 
         }
         .custom-nav-link:hover, .custom-nav-link:hover span, .custom-nav-link:hover i { color: var(--color_primary) !important; }
         
@@ -100,30 +81,16 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: absolute; top: 100%; left: 0; background: #ffffff;
             box-shadow: 0 8px 24px rgba(0,0,0,0.15); border-radius: 6px;
-            z-index: 999; border: 1px solid #eaeaea; 
-            min-width: 280px; /* AUMENTADO: Largura da caixa para comportar o novo padding */
-            overflow-x: hidden; 
-            display: flex !important; 
-            flex-direction: column !important; 
+            z-index: 999; border: 1px solid #eaeaea; min-width: 280px;
+            overflow-x: hidden; display: flex !important; flex-direction: column !important; 
         }
-        
-        .submenu ul {
-            overflow-x: hidden; 
-        }
-        
+        .submenu ul { overflow-x: hidden; }
         .has-submenu:hover .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
         
-        /* Faz os últimos submenus abrirem da direita para a esquerda para não vazarem a tela */
         .header-nav > ul > li:nth-last-child(2) .submenu, 
-        .header-nav > ul > li:nth-last-child(3) .submenu {
-            left: auto;
-            right: 0;
-        }
+        .header-nav > ul > li:nth-last-child(3) .submenu { left: auto; right: 0; }
 
-        /* AUMENTADO: Padding interno das opções (links) para ficarem mais fáceis de clicar */
         .custom-submenu-link { padding: 12px 16px; border-radius: 4px; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; color: #333 !important; font-size: 15px; }
-        
-        /* AUMENTADO: Ajuste no efeito de "empurrar" o texto para bater certo com o novo padding */
         .custom-submenu-link:hover { background-color: var(--color_gray); color: var(--color_primary) !important; padding-left: 21px; padding-right: 7px; }
         
         .btn-ver-marcas { background-color: transparent; border: 2px solid var(--color_primary); color: var(--color_primary) !important; font-weight: 700; text-align: center; border-radius: 4px; padding: 8px 24px; display: inline-block; transition: all 0.3s ease; }
@@ -132,10 +99,14 @@
         .btn-ofertas { background: var(--color_primary); color: #ffffff !important; padding: 10px 18px; border-radius: 4px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0, 153, 51, 0.3); }
         .btn-ofertas:hover { background: #007a29; transform: scale(1.05); box-shadow: 0 6px 15px rgba(0, 153, 51, 0.4); }
 
+        .hamburger-btn { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; padding: 5px; }
+
         /* =========================================
-           RESET DE BANNER
+           RESET DE BANNER E LAYOUT
            ========================================= */
         .page-catalog .item-image { display: none !important; }
+        .catalog-layout { display: flex; gap: 30px; align-items: flex-start; }
+        .sidebar-category-wrapper { flex: 0 0 280px; }
 
         /* =========================================
            ESTILOS DOS FILTROS (SANFONAS)
@@ -166,229 +137,123 @@
         .filter-button-container { display: none !important; }
         .products-list.loading { opacity: 0.4; pointer-events: none; transition: opacity 0.3s; }
         
-        /* =========================================
-           ESTILOS DO BOTÃO E MENU DE FILTROS MOBILE
-           ========================================= */
+        /* BOTÃO E OVERLAY MOBILE */
         .mobile-filter-btn {
-            display: none;
-            width: 100%;
-            background: #1e1e1e;
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-bottom: 20px;
+            display: none; width: 100%; background: var(--color_primary); color: #fff; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: 800; cursor: pointer; margin-bottom: 20px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0, 153, 51, 0.3); align-items: center; justify-content: center;
         }
-        .mobile-filter-btn i { margin-right: 8px; }
+        .mobile-filter-btn i { margin-right: 8px; font-size: 18px; }
         
-        .sidebar-mobile-header {
-            display: none;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
+        .sidebar-mobile-header { display: none; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
         .sidebar-mobile-header h3 { margin: 0; font-size: 18px; font-weight: 800; color: #111; }
         .close-filter-btn { background: transparent; border: none; font-size: 24px; color: #333; cursor: pointer; }
         
-        .filter-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1001;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
+        .filter-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; opacity: 0; transition: opacity 0.3s; }
         .filter-overlay.show { display: block; opacity: 1; }
 
         /* =========================================
-           ESTILOS DOS CARDS DE PRODUTOS (NOVO DESIGN)
+           ESTILOS DOS CARDS DE PRODUTOS (NOVO GRID)
            ========================================= */
+        .list-product {
+            display: grid !important; /* Força o GRID em vez de flex */
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 20px !important;
+            margin: 0; padding: 0;
+        }
+
         .product-card {
-            width: calc(33.333% - 14px);
-            border: 1px solid #eaeaea;
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            background: #fff;
-            transition: box-shadow 0.3s, transform 0.3s;
+            width: 100% !important; /* Ocupa exatamente 1 espaço no grid */
+            border: 1px solid #eaeaea; border-radius: 16px; padding: 20px;
+            display: flex; flex-direction: column; position: relative;
+            background: #fff; transition: box-shadow 0.3s, transform 0.3s;
         }
-        .product-card:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        .product-badge {
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            background: #000;
-            color: var(--color_primary);
-            padding: 6px 14px;
-            font-weight: 900;
-            font-size: 16px;
-            border-bottom-right-radius: 16px;
-            border-top-left-radius: 16px;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+        .product-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        
+        .product-badge { position: absolute; top: -1px; left: -1px; background: #000; color: var(--color_primary); padding: 6px 14px; font-weight: 900; font-size: 16px; border-bottom-right-radius: 16px; border-top-left-radius: 16px; z-index: 2; display: flex; align-items: center; gap: 4px; }
         .product-badge span { font-size: 11px; font-weight: 600; }
         
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain; /* Impede que as imagens fiquem distorcidas */
-            margin-top: 15px;
-            mix-blend-mode: multiply;
-        }
+        .product-img { width: 100%; height: 200px; object-fit: contain; margin-top: 15px; mix-blend-mode: multiply; }
         
-        .product-content {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1; /* Faz o conteúdo esticar para ocupar o espaço vazio */
-            margin-top: 15px;
-        }
+        .product-content { display: flex; flex-direction: column; flex-grow: 1; margin-top: 15px; }
+        .product-title { font-size: 15px; font-weight: 800; color: #111; line-height: 1.4; margin-bottom: 15px; }
+        .product-price-wrapper { margin-top: auto; }
         
-        .product-title {
-            font-size: 15px;
-            font-weight: 800;
-            color: #111;
-            line-height: 1.4;
-            margin-bottom: 15px;
-        }
-        
-        .product-price-wrapper {
-            margin-top: auto; /* Empurra os preços e o botão sempre para a base do card */
-        }
-        
-        .product-price-pix {
-            color: var(--color_primary);
-            font-size: 26px;
-            font-weight: 900;
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
-        }
-        .product-price-pix span {
-            color: #777;
-            font-size: 13px;
-            font-weight: 600;
-        }
+        .product-price-pix { color: var(--color_primary); font-size: 26px; font-weight: 900; display: flex; align-items: baseline; gap: 6px; }
+        .product-price-pix span { color: #777; font-size: 13px; font-weight: 600; }
         
         .product-installments { font-size: 13px; color: #111; margin-top: 4px; }
         .product-term-price { font-size: 13px; color: #777; margin-top: 2px; }
         
-        .btn-buy {
-            width: 100%;
-            background: var(--color_primary);
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 30px;
-            font-weight: 800;
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
+        .btn-buy { width: 100%; background: var(--color_primary); color: #fff; padding: 12px; border: none; border-radius: 30px; font-weight: 800; font-size: 14px; cursor: pointer; margin-top: 15px; transition: background 0.3s; text-transform: uppercase;}
         .btn-buy:hover { background: #007a29; }
 
-        /* Botão do Menu Hamburguer (Oculto no Desktop) */
-        .hamburger-btn { display: none; background: transparent; border: none; color: #fff; font-size: 26px; cursor: pointer; padding: 5px; }
-
         /* =========================================
-           RESPONSIVIDADE E USABILIDADE (MOBILE & TABLET)
+           RESPONSIVIDADE (MOBILE & TABLET)
            ========================================= */
-        
-        /* Classe estrutural para gerir as colunas */
-        .catalog-layout { display: flex; gap: 30px; align-items: flex-start; }
-        .sidebar-category-wrapper { flex: 0 0 280px; }
-
         @media (max-width: 1024px) {
-            /* Tablet: Passa de 3 para 2 produtos por linha */
-            .product-card { width: calc(50% - 10px); }
+            .list-product { grid-template-columns: repeat(2, 1fr) !important; }
         }
 
         @media (max-width: 768px) {
-            /* Cabeçalho: Reorganiza para o Hambúrguer, Logo e Busca */
             header { position: relative; }
             .main-header-content .container { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 0; }
             .hamburger-btn { display: block; order: 1; }
             .logo-header { order: 2; margin: 0 auto; }
             .header-search-input { max-width: 100% !important; flex: 0 0 100%; order: 3; margin-top: 15px; }
 
-            /* Menu Principal: Oculto por padrão (Hambúrguer) e sobreposto */
-            .header-nav { 
-                display: none; 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                width: 100%; 
-                z-index: 1000; 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            }
-            .header-nav.mobile-menu-open { display: block; } /* Mostrado ao clicar */
+            .header-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+            .header-nav.mobile-menu-open { display: block; } 
 
-            /* Transforma os links numa lista vertical */
             .header-nav > div > ul { flex-direction: column; align-items: stretch; gap: 0; }
             .header-nav > div > ul > li { border-bottom: 1px solid #333; padding: 0; }
             .custom-nav-link { padding: 15px 20px; justify-content: space-between; }
             
-            /* Submenus adaptados para Mobile (Abrem como Sanfona) */
-            .submenu {
-                position: static !important; /* Remove a flutuação do menu */
-                transform: none !important;
-                box-shadow: none !important;
-                border: none !important;
-                border-radius: 0 !important;
-                min-width: 100% !important;
-                display: none !important; /* Esconde por padrão */
-                padding-left: 10px;
-            }
-            .has-submenu:hover .submenu,
-            .has-submenu:active .submenu {
-                display: flex !important; /* Mostra ao tocar/passar o rato */
-            }
-            /* Corrige colunas do menu de marcas no mobile */
+            .submenu { position: static !important; transform: none !important; box-shadow: none !important; border: none !important; border-radius: 0 !important; min-width: 100% !important; display: none !important; padding-left: 10px; }
+            .has-submenu:hover .submenu, .has-submenu:active .submenu { display: flex !important; }
             .submenu .flex { flex-direction: column !important; gap: 15px !important; }
             .btn-ofertas { text-align: center; justify-content: center; border-radius: 0; }
 
-            /* Layout: Filtros viram Drawer Lateral no Mobile */
             .catalog-layout { flex-direction: column; gap: 0; }
-            
-            .mobile-filter-btn { display: block; }
+            .mobile-filter-btn { display: flex; }
             .sidebar-mobile-header { display: flex; }
             
+            /* GAVETA OFF-CANVAS PROTEGIDA COM !IMPORTANT */
             .sidebar-category-wrapper { 
-                position: fixed;
-                top: 0;
-                left: -100%; /* Esconde fora da tela por padrão */
-                width: 85%;
-                max-width: 320px;
-                height: 100vh;
-                background: #fff;
-                z-index: 1002;
-                padding: 20px;
-                overflow-y: auto;
-                transition: left 0.3s ease;
-                border-radius: 0;
-                box-shadow: none;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                transform: translateX(-100%) !important;
+                width: 85% !important;
+                max-width: 320px !important;
+                height: 100vh !important;
+                background: #fff !important;
+                z-index: 10000 !important; 
+                padding: 20px !important;
+                overflow-y: auto !important;
+                transition: transform 0.3s ease !important;
+                border-radius: 0 !important;
+                display: block !important;
+                visibility: visible !important;
             }
-            .sidebar-category-wrapper.open { left: 0; box-shadow: 2px 0 15px rgba(0,0,0,0.5); }
+            .sidebar-category-wrapper.open { 
+                transform: translateX(0) !important; 
+                box-shadow: 2px 0 15px rgba(0,0,0,0.5) !important; 
+            }
         }
 
         @media (max-width: 480px) {
-            /* Mobile Pequeno: 1 produto por linha com preços adaptados */
-            .product-card { width: 100%; }
-            .product-price-pix { font-size: 24px; }
+            /* Força sempre 2 colunas seguras usando Grid */
+            .list-product { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+            
+            .product-card { padding: 12px !important; border-radius: 12px !important; }
+            .product-badge { font-size: 12px !important; padding: 5px 10px !important; border-bottom-right-radius: 12px !important; border-top-left-radius: 12px !important; }
+            .product-badge span { font-size: 9px !important; }
+            .product-img { height: 110px !important; margin-top: 5px !important; }
+            .product-title { font-size: 12px !important; margin-bottom: 8px !important; line-height: 1.3 !important; }
+            .product-price-pix { font-size: 18px !important; flex-direction: column !important; gap: 0 !important; align-items: flex-start !important; }
+            .product-price-pix span { font-size: 10px !important; }
+            .product-installments { font-size: 10px !important; margin-top: 6px !important; line-height: 1.2 !important; }
+            .product-term-price { font-size: 10px !important; }
+            .btn-buy { padding: 8px !important; font-size: 11px !important; margin-top: 10px !important; }
         }
     </style>
 </head>
@@ -401,7 +266,6 @@
         <div class="main-header-content">
             <div class="container pv-2 flex ai-c jc-sb" style="max-width: 1200px; margin: 0 auto;">
                 
-                <!-- BOTÃO HAMBURGUER (MOBILE) -->
                 <button class="hamburger-btn" aria-label="Abrir Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -415,7 +279,6 @@
             </div>
         </div>
 
-        <!-- NOVO MENU PRINCIPAL -->
         <nav class="header-nav">
             <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
                 <ul class="flex gap-2 ai-c font-size-8 jc-sb">
@@ -427,62 +290,15 @@
                         </a>
                         <div class="submenu">
                             <ul class="flex-1 pv-4 ph-3">
-                                <li>
-                                    <a href="/carros-de-passeio" title="Carros de Passeio" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">Carros de Passeio</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/caminhonete-e-suv" title="SUVs e Caminhonetes" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">SUVs e Caminhonetes</span>
-                                    </a>
-                                </li>
-                                
-                                <li style="margin-top: 12px; border-top: 1px solid #eee; padding-top: 8px;">
-                                    <a href="/moto" title="Motos" class="flex gap-1 ai-c pl-2 custom-submenu-link">
-                                        <i class="fa-solid fa-motorcycle text-primary"></i>
-                                        <span class="font-weight-900">Motos</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pneu-urbano" title="Motos Urbano" class="custom-submenu-link pl-4">
-                                        <i class="fa-solid fa-angles-right text-primary font-size-9"></i>
-                                        <span class="font-weight-700">Urbano</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pneu-trail" title="Motos Trail" class="custom-submenu-link pl-4">
-                                        <i class="fa-solid fa-angles-right text-primary font-size-9"></i>
-                                        <span class="font-weight-700">Trail</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pneu-off-road" title="Motos Off-Road" class="custom-submenu-link pl-4">
-                                        <i class="fa-solid fa-angles-right text-primary font-size-9"></i>
-                                        <span class="font-weight-700">Off-Road</span>
-                                    </a>
-                                </li>
-
-                                <li style="margin-top: 12px; border-top: 1px solid #eee; padding-top: 8px;">
-                                    <a href="/van-e-utilitario" title="Vans e Utilitários" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">Vans e Utilitários</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/caminhao-e-onibus" title="Caminhão e Ônibus" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">Caminhão e Ônibus</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/agricola-e-otr" title="Agrícola e OTR" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">Agrícola e OTR</span>
-                                    </a>
-                                </li>
+                                <li><a href="/carros-de-passeio" title="Carros de Passeio" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">Carros de Passeio</span></a></li>
+                                <li><a href="/caminhonete-e-suv" title="SUVs e Caminhonetes" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">SUVs e Caminhonetes</span></a></li>
+                                <li style="margin-top: 12px; border-top: 1px solid #eee; padding-top: 8px;"><a href="/moto" title="Motos" class="flex gap-1 ai-c pl-2 custom-submenu-link"><i class="fa-solid fa-motorcycle text-primary"></i> <span class="font-weight-900">Motos</span></a></li>
+                                <li><a href="/pneu-urbano" title="Motos Urbano" class="custom-submenu-link pl-4"><i class="fa-solid fa-angles-right text-primary font-size-9"></i> <span class="font-weight-700">Urbano</span></a></li>
+                                <li><a href="/pneu-trail" title="Motos Trail" class="custom-submenu-link pl-4"><i class="fa-solid fa-angles-right text-primary font-size-9"></i> <span class="font-weight-700">Trail</span></a></li>
+                                <li><a href="/pneu-off-road" title="Motos Off-Road" class="custom-submenu-link pl-4"><i class="fa-solid fa-angles-right text-primary font-size-9"></i> <span class="font-weight-700">Off-Road</span></a></li>
+                                <li style="margin-top: 12px; border-top: 1px solid #eee; padding-top: 8px;"><a href="/van-e-utilitario" title="Vans e Utilitários" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">Vans e Utilitários</span></a></li>
+                                <li><a href="/caminhao-e-onibus" title="Caminhão e Ônibus" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">Caminhão e Ônibus</span></a></li>
+                                <li><a href="/agricola-e-otr" title="Agrícola e OTR" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">Agrícola e OTR</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -494,24 +310,9 @@
                         </a>
                         <div class="submenu" style="min-width: 220px;">
                             <ul class="flex-1 pv-4 ph-3">
-                                <li>
-                                    <a href="/carros-de-passeio?aro=13,14,15" title="Aro 13 ao Aro 15" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">Aro 13 ao Aro 15</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/carros-de-passeio?aro=16,17,18" title="Aro 16 ao Aro 18" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">Aro 16 ao Aro 18</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/carros-de-passeio?aro=19,20,21,22,23" title="Aro 19 ou maior" class="custom-submenu-link">
-                                        <i class="fa-solid fa-angles-right text-primary"></i>
-                                        <span class="font-weight-700">Aro 19 ou maior</span>
-                                    </a>
-                                </li>
+                                <li><a href="/carros-de-passeio?aro=13,14,15" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">Aro 13 ao Aro 15</span></a></li>
+                                <li><a href="/carros-de-passeio?aro=16,17,18" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">Aro 16 ao Aro 18</span></a></li>
+                                <li><a href="/carros-de-passeio?aro=19,20,21,22,23" class="custom-submenu-link"><i class="fa-solid fa-angles-right text-primary"></i> <span class="font-weight-700">Aro 19 ou maior</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -542,8 +343,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            
-                            <!-- Botão alinhado à esquerda -->
                             <div class="ph-3 pb-3" style="text-align: left;">
                                 <a href="/marcas" class="btn-ver-marcas"><i class="fa-solid fa-plus" style="margin-right: 5px;"></i> Ver Todas as Marcas</a>
                             </div>
@@ -557,18 +356,8 @@
                         </a>
                         <div class="submenu" style="min-width: 220px;">
                             <ul class="flex-1 pv-4 ph-3">
-                                <li>
-                                    <a href="/kit-de-pneus/2-pneus" title="Kits com 2 Pneus" class="custom-submenu-link">
-                                        <i class="fa-solid fa-layer-group text-primary"></i>
-                                        <span class="font-weight-700">Kits com 2 Pneus</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/kit-de-pneus/4-pneus" title="Kits com 4 Pneus" class="custom-submenu-link">
-                                        <i class="fa-solid fa-layer-group text-primary"></i>
-                                        <span class="font-weight-700">Kits com 4 Pneus</span>
-                                    </a>
-                                </li>
+                                <li><a href="/kit-de-pneus/2-pneus" class="custom-submenu-link"><i class="fa-solid fa-layer-group text-primary"></i> <span class="font-weight-700">Kits com 2 Pneus</span></a></li>
+                                <li><a href="/kit-de-pneus/4-pneus" class="custom-submenu-link"><i class="fa-solid fa-layer-group text-primary"></i> <span class="font-weight-700">Kits com 4 Pneus</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -585,7 +374,6 @@
         </nav>
     </header>
 
-    <!-- CORPO PRINCIPAL -->
     <main class="site-main" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         
         <section id="breadcrumbs">
@@ -597,29 +385,25 @@
             </div>
         </section>
 
-        <!-- ALTERAÇÃO AQUI: Aplicação da classe estrutural 'catalog-layout' -->
         <section class="pv-6 catalog-layout">
             
-            <!-- OVERLAY DOS FILTROS MOBILE -->
             <div class="filter-overlay"></div>
 
-            <!-- BOTÃO FILTRAR MOBILE (Super Destaque) -->
-            <button class="mobile-filter-btn">
+            <button type="button" class="mobile-filter-btn">
                 <i class="fa-solid fa-filter"></i> Filtrar Produtos
             </button>
 
-            <!-- COLUNA DA ESQUERDA: FILTROS SANFONA -->
+            <!-- COLUNA DA ESQUERDA: FILTROS -->
             <div id="sidebar-category" class="sidebar-category sidebar-category-wrapper">
                 
-                <!-- CABEÇALHO DO FILTRO MOBILE -->
                 <div class="sidebar-mobile-header">
                     <h3>Filtros</h3>
-                    <button class="close-filter-btn" aria-label="Fechar Filtros"><i class="fa-solid fa-xmark"></i></button>
+                    <button type="button" class="close-filter-btn" aria-label="Fechar Filtros"><i class="fa-solid fa-xmark"></i></button>
                 </div>
 
                 <form class="smart-filter" name="form-filter" method="get" action="">
                     
-                    <!-- FILTRO: MARCAS -->
+                    <!-- MARCAS -->
                     <section class="filter-block" data-filter-type="marcas">
                         <h4 class="filter-title" onclick="toggleFilter(this.parentElement)">Marcas <i class="fa-solid fa-chevron-down"></i></h4>
                         <div class="filter-content">
@@ -642,7 +426,7 @@
                         </div>
                     </section>
 
-                    <!-- FILTRO: LARGURA -->
+                    <!-- LARGURA -->
                     <section class="filter-block" data-filter-type="largura">
                         <h4 class="filter-title" onclick="toggleFilter(this.parentElement)">Largura <i class="fa-solid fa-chevron-down"></i></h4>
                         <div class="filter-content">
@@ -663,7 +447,7 @@
                         </div>
                     </section>
 
-                    <!-- FILTRO: RUÍDO (Carrega Fechado) -->
+                    <!-- RUÍDO (Fechada) -->
                     <section class="filter-block closed" data-filter-type="ruido">
                         <h4 class="filter-title" onclick="toggleFilter(this.parentElement)">Ruído Externo <i class="fa-solid fa-chevron-down"></i></h4>
                         <div class="filter-content">
@@ -678,10 +462,10 @@
                 </form>
             </div>
 
-            <!-- COLUNA DA DIREITA: VITRINE -->
+            <!-- COLUNA DA DIREITA: VITRINE COM NOVO GRID CSS -->
             <div class="products-list flex-1">
                 <div class="catalog-content">
-                    <ul class="list-product flex f-wrap" style="gap: 20px;">
+                    <ul class="list-product">
                         
                         <!-- Produto 1 -->
                         <li class="product-card">
@@ -727,6 +511,21 @@
                             </div>
                             <button class="btn-buy">VER PRODUTO</button>
                         </li>
+                        
+                        <!-- Produto 4 Extra -->
+                        <li class="product-card">
+                            <div class="product-badge">15% <span>OFF</span></div>
+                            <img src="https://images.tcdn.com.br/img/img_prod/1063462/180_pneu_aro_15_xbri_31x10_50_r15_lt_6pr_109s_tl_brutus_t_a_217_1_2a446a898f413e3989411a51f3500913.jpg" alt="Pneu Xbri" class="product-img">
+                            <div class="product-content">
+                                <h3 class="product-title">Pneu Aro 15 Xbri 31X10.50 R15 LT 6PR 109S TL</h3>
+                                <div class="product-price-wrapper">
+                                    <div class="product-price-pix">R$ 819,00 <span>NO PIX</span></div>
+                                    <p class="product-installments">ou 12x de <strong>R$ 77,56</strong> sem juros</p>
+                                    <p class="product-term-price">R$ 930,72 a prazo</p>
+                                </div>
+                            </div>
+                            <button class="btn-buy">VER PRODUTO</button>
+                        </li>
 
                     </ul>
                 </div>
@@ -735,14 +534,13 @@
         </section>
     </main>
 
-    <!-- RODAPÉ BÁSICO PARA O TESTE -->
     <footer style="background: #1e1e1e; padding: 40px 0; text-align: center; color: #fff; margin-top: 40px;">
         <p style="font-size: 14px; font-weight: 600;">© 2023 Pneugreen Ltda - Todos os direitos reservados.</p>
     </footer>
 
 </div>
 
-<!-- SCRIPT DE INTERAÇÃO DOS FILTROS -->
+<!-- SCRIPT DE INTERAÇÃO DOS FILTROS E MOBILE -->
 <script>
     // 1. Sanfonas
     function toggleFilter(element) { element.classList.toggle('closed'); }
@@ -773,11 +571,11 @@
         btn.style.display = "none";
     }
 
-    // 4. Auto-Refresh Simulador
     document.addEventListener('DOMContentLoaded', function() {
+        
+        // 4. Auto-Refresh Simulador
         const filterForm = document.querySelector('.smart-filter');
         const productsContainer = document.querySelector('.products-list');
-
         if (filterForm) {
             filterForm.addEventListener('change', function() {
                 if(productsContainer) productsContainer.classList.add('loading');
@@ -788,12 +586,9 @@
         // 5. Interação do Menu Hambúrguer
         const hamburgerBtn = document.querySelector('.hamburger-btn');
         const headerNav = document.querySelector('.header-nav');
-        
         if (hamburgerBtn && headerNav) {
             hamburgerBtn.addEventListener('click', function() {
                 headerNav.classList.toggle('mobile-menu-open');
-                
-                // Troca o ícone de Barras para X
                 const icon = hamburgerBtn.querySelector('i');
                 if (headerNav.classList.contains('mobile-menu-open')) {
                     icon.classList.remove('fa-bars');
@@ -805,28 +600,28 @@
             });
         }
 
-        // 6. Interação do Filtro Mobile (Off-canvas)
+        // 6. Interação do Filtro Mobile (Off-canvas Drawer Lateral)
         const filterBtn = document.querySelector('.mobile-filter-btn');
         const closeFilterBtn = document.querySelector('.close-filter-btn');
         const sidebarCategory = document.querySelector('.sidebar-category-wrapper');
         const filterOverlay = document.querySelector('.filter-overlay');
 
         if (filterBtn && sidebarCategory) {
-            function toggleMobileFilters() {
+            function toggleMobileFilters(e) {
+                if (e) e.preventDefault();
                 sidebarCategory.classList.toggle('open');
                 
                 if (sidebarCategory.classList.contains('open')) {
                     filterOverlay.classList.add('show');
-                    document.body.style.overflow = 'hidden'; // Impede o scroll da página de fundo
+                    document.body.style.overflow = 'hidden'; 
                 } else {
                     filterOverlay.classList.remove('show');
                     document.body.style.overflow = '';
                 }
             }
-
             filterBtn.addEventListener('click', toggleMobileFilters);
-            closeFilterBtn.addEventListener('click', toggleMobileFilters);
-            filterOverlay.addEventListener('click', toggleMobileFilters); // Fecha ao clicar fora
+            if (closeFilterBtn) closeFilterBtn.addEventListener('click', toggleMobileFilters);
+            if (filterOverlay) filterOverlay.addEventListener('click', toggleMobileFilters); 
         }
     });
 </script>
